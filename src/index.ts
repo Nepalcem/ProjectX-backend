@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import logger from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -11,6 +12,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 dotenv.config({ path: path.join(__dirname, "../environment", ".env") });
 const { PORT } = process.env || 3000;
+const { MONGO_URL } = process.env;
+
+if (!MONGO_URL) {
+  console.error("MONGO_URL is not defined in the environment variables.");
+  process.exit(1);
+}
 
 const app: Express = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -36,6 +43,17 @@ app.get("/", (_req, res) => {
   res.send(console.log("Its alive!1"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+
+
+mongoose
+  .connect(MONGO_URL)
+  .then(() => {
+    console.log("Database connection successfull ");
+    app.listen(PORT, () => {
+      console.log(`Server is running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(`Server cannot start. Error: ${err.message}`);
+    process.exit(1);
+  });

@@ -4,12 +4,16 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2020",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
     "outDir": "dist",
     "rootDir": "src",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "types": [],
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],

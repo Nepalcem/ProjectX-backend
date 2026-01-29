@@ -1,7 +1,8 @@
+import type { Types } from "mongoose";
+
 export interface IUser {
   email: string;
   password: string;
-  nickname: string;
   token: string | null;
   verified: boolean;
   verificationToken: string;
@@ -9,10 +10,16 @@ export interface IUser {
 
 export interface ICharacter {
   id: string;
+  nickname: string;
   race: IRace;
   level: number;
-  owner: string; // user ID
+  owner: Types.ObjectId | IUser;
   createdAt: Date;
+  money: number;
+  stats: ICharacterStats;
+}
+
+export interface ICharacterStats {
   strength: number;
   agility: number;
   luck: number;
@@ -23,7 +30,6 @@ export interface ICharacter {
   fatigue: number;
   fatigueRecovery: number;
   statPoints: number;
-  money: number;
 }
 
 export type IRace = "human" | "elf" | "dwarf" | "orc";

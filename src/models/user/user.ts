@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
 import {
   emailRegExp,
-  passwordRegExp,
-  nicknameRegExp,
+  passwordRegExp
 } from "@/constants/regularExpressions.js";
 
 import type { IUser } from "@/appTypes/appTypes.js";
+import handleMongooseError from "@/helpers/handleMongooseError.js";
 
 
 const userSchema: Schema = new Schema<IUser>(
@@ -36,5 +36,7 @@ const userSchema: Schema = new Schema<IUser>(
   },
   { versionKey: false, timestamps: true },
 );
+
+userSchema.post<IUser>("save", handleMongooseError);
 
 export default model<IUser>("User", userSchema);

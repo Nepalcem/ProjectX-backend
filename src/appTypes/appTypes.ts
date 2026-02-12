@@ -1,6 +1,6 @@
-import type { Types } from "mongoose";
+import type { Types, Document } from "mongoose";
 
-export interface IUser {
+export interface IUser extends Document {
   email: string;
   password: string;
   token: string | null;

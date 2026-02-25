@@ -10,3 +10,5 @@ router.post(
   validateBody(zodSchemas.register),
   authControllers.register,
 );
+
+export default router;

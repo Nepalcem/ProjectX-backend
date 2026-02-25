@@ -8,9 +8,9 @@ interface SendEmailOptions {
 
 const { ELASTIC_API_KEY, ELASTIC_FROM_EMAIL } = process.env;
 
-if (!ELASTIC_API_KEY || !ELASTIC_FROM_EMAIL) {
-  throw new Error("Elastic Email environment variables are missing");
-}
+  if (!ELASTIC_API_KEY || !ELASTIC_FROM_EMAIL) {
+    throw new Error("Elastic Email environment variables are missing");
+  }
 
 const sendVerificationEmail = async ({
   to,

@@ -11,6 +11,7 @@ import AppError from "./errorHandler/errorHandler.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 dotenv.config({ path: path.join(__dirname, "../environment", ".env") });
+
 const { PORT } = process.env || 3000;
 const { MONGO_URL } = process.env;
 
@@ -18,6 +19,8 @@ if (!MONGO_URL) {
   console.error("MONGO_URL is not defined in the environment variables.");
   process.exit(1);
 }
+
+const authRouter = await import("./routes-Api/authRouter.js");
 
 const app: Express = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -43,6 +46,7 @@ app.get("/", (_req, res) => {
   res.send(console.log("Its alive!1"));
 });
 
+app.use("/auth", authRouter.default);
 
 
 mongoose

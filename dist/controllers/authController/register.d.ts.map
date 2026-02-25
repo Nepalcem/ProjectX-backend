@@ -1,0 +1,1 @@
+{"version":3,"file":"register.d.ts","sourceRoot":"","sources":["../../../src/controllers/authController/register.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAOjD,QAAA,MAAM,QAAQ,GAAU,KAAK,OAAO,EAAE,KAAK,QAAQ,kBA6BlD,CAAC;AAEF,eAAe,QAAQ,CAAC"}

@@ -1,0 +1,7 @@
+import express from "express";
+import authControllers from "../controllers/authController/index.js";
+import validateBody from "../middlewares/validateBody.js";
+import zodSchemas from "../zodSchemas/index.js";
+const router = express.Router();
+router.post("/register", validateBody(zodSchemas.register), authControllers.register);
+//# sourceMappingURL=authRouter.js.map

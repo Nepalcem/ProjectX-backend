@@ -1,1 +1,1 @@
-{"version":3,"file":"regularExpressions.js","sourceRoot":"","sources":["../../src/constants/regularExpressions.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,GAAW,+BAA+B,CAAC;AAC5D,MAAM,cAAc,GAClB,mEAAmE,CAAC;AAEtE,OAAO,EAAE,WAAW,EAAE,cAAc,EAAE,CAAC"}
+{"version":3,"file":"regularExpressions.js","sourceRoot":"","sources":["../../src/constants/regularExpressions.ts"],"names":[],"mappings":"AAAA,2FAA2F;AAC3F,MAAM,WAAW,GAAW,+BAA+B,CAAC;AAE5D,4HAA4H;AAC5H,MAAM,cAAc,GAClB,mEAAmE,CAAC;AAEtE,uEAAuE;AACvE,MAAM,cAAc,GAAW,sBAAsB,CAAC;AAEtD,OAAO,EAAE,WAAW,EAAE,cAAc,EAAE,cAAc,EAAE,CAAC"}

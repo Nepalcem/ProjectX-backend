@@ -1,38 +1,47 @@
-import { BrevoClient } from "@getbrevo/brevo";
+import nodemailer from "nodemailer";
 
-const { BREVO_API_KEY, BREVO_FROM_EMAIL, BREVO_FROM_NAME } = process.env;
-
-if (!BREVO_API_KEY || !BREVO_FROM_EMAIL || !BREVO_FROM_NAME) {
-  throw new Error("Brevo environment variables are missing");
-}
-
-const brevo = new BrevoClient({ apiKey: BREVO_API_KEY });
-
-interface SendEmailOptions {
-  to: string;
-  subject: string;
-  html: string;
-}
-
-const sendVerificationEmail = async ({
-  to,
-  subject,
-  html,
-}: SendEmailOptions): Promise<void> => {
-  try {
-    await brevo.transactionalEmails.sendTransacEmail({
-      sender: {
-        email: BREVO_FROM_EMAIL,
-        name: BREVO_FROM_NAME,
+const createTransporter = () => {
+    return nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
-      to: [{ email: to }],
-      subject,
-      htmlContent: html,
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
-  } catch (error: any) {
-    console.error(error.response?.body || error);
-    throw error;
-  }
 };
 
-export default sendVerificationEmail;
+interface SendEmailOptions {
+    to: string;
+    subject: string;
+    html: string;
+}
+
+interface UserEmail {
+  email: string;
+}
+
+export const sendVerificationEmail = async (user: UserEmail, verificationURL: string) => {
+  try {
+    const transporter = createTransporter();
+
+    const clearURL = verificationURL.trim();
+
+    const message = {
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "Verify your email for ProjectX account",
+      html: `<a href='${clearURL}'>Click to verify your email</a>`,
+    };
+
+    const info = await transporter.sendMail(message);
+
+    console.log("Email sent: %s", info.messageId);
+  } catch (error: any) {
+    console.error(error);
+  }
+};

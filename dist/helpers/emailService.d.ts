@@ -1,8 +1,6 @@
-interface SendEmailOptions {
-    to: string;
-    subject: string;
-    html: string;
+interface UserEmail {
+    email: string;
 }
-declare const sendVerificationEmail: ({ to, subject, html, }: SendEmailOptions) => Promise<void>;
-export default sendVerificationEmail;
+export declare const sendVerificationEmail: (user: UserEmail, verificationURL: string) => Promise<void>;
+export {};
 //# sourceMappingURL=emailService.d.ts.map

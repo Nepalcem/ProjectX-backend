@@ -1,8 +1,11 @@
 import HttpError from "../helpers/httpError.js";
 const validateBody = (schema) => {
     return (req, res, next) => {
-        if (!Object.keys(req.body).length) {
+        if (!req.body) {
             return next(new HttpError(400, "Request body is empty"));
+        }
+        if (!Object.keys(req.body).length) {
+            return next(new HttpError(400, "Request body is not valid JSON"));
         }
         const result = schema.safeParse(req.body);
         if (result.success === false) {

@@ -2,7 +2,6 @@ import { z } from "zod";
 declare const registerSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
-    nickname: z.ZodString;
     token: z.ZodDefault<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 export default registerSchema;

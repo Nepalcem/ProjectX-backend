@@ -1,10 +1,15 @@
 import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import User from "../../models/user/user.js";
-import sendVerificationEmail from "../../helpers/emailService.js";
+// import sendVerificationEmail from "../../helpers/emailService_old.js";
+import { sendVerificationEmail } from "../../helpers/emailService.js";
 import HttpError from "../../helpers/httpError.js";
-const { BASE_URL } = process.env;
+import { validationResult } from "express-validator";
 const register = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        throw new HttpError(400, "Invalid input");
+    }
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -17,12 +22,7 @@ const register = async (req, res) => {
         password: hashedPassword,
         verificationToken,
     });
-    const verifyEmail = {
-        to: email,
-        subject: "Verify email for ProjectX account",
-        html: `<a href='${BASE_URL}/auth/verify/${verificationToken}'>Click to verify your email</a>`,
-    };
-    await sendVerificationEmail(verifyEmail);
+    await sendVerificationEmail({ email }, verificationToken);
     res.status(201).json({
         message: "Please verify your email",
     });

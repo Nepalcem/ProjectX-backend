@@ -14,6 +14,7 @@ if (!MONGO_URL) {
     console.error("MONGO_URL is not defined in the environment variables.");
     process.exit(1);
 }
+const authRouter = await import("./routes-Api/authRouter.js");
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
@@ -27,6 +28,7 @@ app.use((err, _req, res, _next) => {
 app.get("/", (_req, res) => {
     res.send(console.log("Its alive!1"));
 });
+app.use("/auth", authRouter.default);
 mongoose
     .connect(MONGO_URL)
     .then(() => {

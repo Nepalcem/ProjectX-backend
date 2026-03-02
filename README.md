@@ -26,3 +26,7 @@ Start the production server
 ```bash
 npm run start
 ```
+
+## 3. Backend URL
+
+https://projectx-backend-lol9.onrender.com/

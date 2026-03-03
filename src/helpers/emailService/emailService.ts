@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import emailTemplate from "./emailTemplate.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
@@ -16,13 +17,7 @@ export const sendVerificationEmail = async ({
       from: process.env.RESEND_FROM_EMAIL!,
       to: [to],
       subject: "Verify your email",
-      html: `
-        <div>
-          <h1>Almost there!</h1>
-          <p>Click the link below to verify your email:</p>
-          <a href="${verificationToken}">${verificationToken}</a>
-        </div>
-      `,
+      html: emailTemplate(verificationToken),
     });
 
     if (error) {

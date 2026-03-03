@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import User from "../../models/user/user.js";
-import { sendVerificationEmail } from "../../helpers/emailService.js";
 import HttpError from "../../helpers/httpError.js";
+import { sendVerificationEmail } from "../../helpers/emailService/emailService.js";
 import { validationResult } from "express-validator";
 const register = async (req, res) => {
     const errors = validationResult(req);

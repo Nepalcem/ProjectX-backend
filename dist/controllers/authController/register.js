@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import User from "../../models/user/user.js";
-// import sendVerificationEmail from "../../helpers/emailService_old.js";
 import { sendVerificationEmail } from "../../helpers/emailService.js";
 import HttpError from "../../helpers/httpError.js";
 import { validationResult } from "express-validator";
@@ -22,7 +21,10 @@ const register = async (req, res) => {
         password: hashedPassword,
         verificationToken,
     });
-    await sendVerificationEmail({ email }, verificationToken);
+    await sendVerificationEmail({
+        to: email,
+        verificationToken,
+    });
     res.status(201).json({
         message: "Please verify your email",
     });

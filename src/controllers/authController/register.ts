@@ -2,13 +2,11 @@ import { nanoid } from "nanoid";
 import bcrypt from "bcrypt";
 import type { Request, Response } from "express";
 import User from "@/models/user/user.js";
-// import sendVerificationEmail from "@/helpers/emailService_old.js";
 import { sendVerificationEmail } from "@/helpers/emailService.js";
 import HttpError from "@/helpers/httpError.js";
 import { validationResult } from "express-validator";
 
 const register = async (req: Request, res: Response) => {
-
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     throw new HttpError(400, "Invalid input");
@@ -31,7 +29,10 @@ const register = async (req: Request, res: Response) => {
     verificationToken,
   });
 
-  await sendVerificationEmail({ email }, verificationToken);
+  await sendVerificationEmail({
+    to: email,
+    verificationToken,
+  });
 
   res.status(201).json({
     message: "Please verify your email",

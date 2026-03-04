@@ -4,7 +4,7 @@ export interface IUser extends Document {
     password: string;
     token: string | null;
     verified: boolean;
-    verificationToken: string;
+    verificationToken: string | null;
 }
 export interface ICharacter {
     id: string;

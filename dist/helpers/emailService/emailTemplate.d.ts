@@ -1,3 +1,3 @@
-declare const emailTemplate: (clearURL: string) => string;
+declare const emailTemplate: (verificationToken: string) => string;
 export default emailTemplate;
 //# sourceMappingURL=emailTemplate.d.ts.map

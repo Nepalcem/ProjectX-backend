@@ -6,6 +6,7 @@ export interface IUser extends Document {
   token: string | null;
   verified: boolean;
   verificationToken: string | null;
+  verificationTokenExpires: Date | null;
 }
 
 export interface ICharacter {

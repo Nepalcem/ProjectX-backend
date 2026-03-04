@@ -23,7 +23,11 @@ const userSchema = new Schema({
     },
     verificationToken: {
         type: String,
-        required: [true, "Verify token is required"],
+        default: null,
+    },
+    verificationTokenExpires: {
+        type: Date,
+        default: null,
     },
 }, { versionKey: false, timestamps: true });
 userSchema.post("save", handleMongooseError);

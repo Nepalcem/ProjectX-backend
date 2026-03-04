@@ -31,7 +31,11 @@ const userSchema: Schema = new Schema<IUser>(
     },
     verificationToken: {
       type: String,
-      required: [true, "Verify token is required"],
+      default: null,
+    },
+    verificationTokenExpires: {
+      type: Date,
+      default: null,
     },
   },
   { versionKey: false, timestamps: true },

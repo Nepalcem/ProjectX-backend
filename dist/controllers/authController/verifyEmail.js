@@ -8,9 +8,11 @@ const verifyEmail = async (req, res) => {
         throw new HttpError(400, "Invalid verification token or User not found");
     }
     await User.findByIdAndUpdate(existingUser._id, {
-        verify: true,
+        verified: true,
         verificationToken: null,
     });
+    //   Usually for email verification you redirect to a frontend route like:
+    // FRONTEND_URL=https://ageofbattles.online/verified
     if (FRONTEND_URL) {
         return res.redirect(301, FRONTEND_URL);
     }

@@ -13,8 +13,14 @@ const verifyEmail = async (req, res) => {
         user.verificationTokenExpires = null;
         await user.save();
     }
+    if (!user) {
+        return res
+            .status(400)
+            .json({ message: "Invalid or expired verification token" });
+        // .redirect(301, FRONTEND_URL/resend-verification-email)");
+    }
     //   Usually for email verification you redirect to a frontend route like:
-    // FRONTEND_URL=https://ageofbattles.online/verified
+    // FRONTEND_URL=https://ageofbattles.online/login
     if (FRONTEND_URL) {
         return res.redirect(301, FRONTEND_URL);
     }

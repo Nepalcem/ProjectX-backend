@@ -7,6 +7,11 @@ declare const zodSchemas: {
     verifyEmail: import("zod").ZodObject<{
         email: import("zod").ZodString;
     }, import("zod/v4/core").$strip>;
+    resetPassword: import("zod").ZodObject<{
+        email: import("zod").ZodString;
+        resetToken: import("zod").ZodString;
+        newPassword: import("zod").ZodString;
+    }, import("zod/v4/core").$strip>;
 };
 export default zodSchemas;
 //# sourceMappingURL=index.d.ts.map

@@ -29,6 +29,14 @@ const userSchema = new Schema({
         type: Date,
         default: null,
     },
+    resetToken: {
+        type: String,
+        default: null,
+    },
+    resetTokenExpires: {
+        type: Date,
+        default: null,
+    },
 }, { versionKey: false, timestamps: true });
 userSchema.post("save", handleMongooseError);
 export default model("User", userSchema);

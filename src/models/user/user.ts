@@ -37,6 +37,14 @@ const userSchema: Schema = new Schema<IUser>(
       type: Date,
       default: null,
     },
+    resetToken: {
+      type: String,
+      default: null,
+    },
+    resetTokenExpires: {
+      type: Date,
+      default: null,
+    },
   },
   { versionKey: false, timestamps: true },
 );

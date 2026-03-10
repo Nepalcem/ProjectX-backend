@@ -1,24 +1,25 @@
 import { Resend } from "resend";
-import emailTemplate from "./emailTemplate.js";
+import passwordResetTemplate from "./passwordTemplate.js";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.RESEND_FROM_EMAIL;
-export const sendVerificationEmail = async ({ to, verificationToken, }) => {
+const sendPasswordResetEmail = async ({ resetToken, email, }) => {
     try {
         const { data, error } = await resend.emails.send({
             from: `Age of Battles <${fromEmail}>`,
-            to: [to],
-            subject: "Verify your email",
-            html: emailTemplate(verificationToken),
+            to: [email],
+            subject: "Reset your Age of Battles password",
+            html: passwordResetTemplate(resetToken, email),
         });
         if (error) {
             console.error("Error sending email:", error);
             throw new Error("Failed to send email");
         }
-        console.log("Verification email sent:", data.id);
+        console.log("Password reset email sent:", data.id);
     }
     catch (err) {
         console.error(err);
         throw err;
     }
 };
-//# sourceMappingURL=emailService.js.map
+export default sendPasswordResetEmail;
+//# sourceMappingURL=passwordService.js.map

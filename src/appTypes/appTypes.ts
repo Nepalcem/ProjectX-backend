@@ -7,6 +7,8 @@ export interface IUser extends Document {
   verified: boolean;
   verificationToken: string | null;
   verificationTokenExpires: Date | null;
+  resetToken: string | null;
+  resetTokenExpires: Date | null;
 }
 
 export interface ICharacter {

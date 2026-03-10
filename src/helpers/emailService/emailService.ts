@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import emailTemplate from "./emailTemplate.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
+const fromEmail = process.env.RESEND_FROM_EMAIL!;
 
 interface SendVerificationEmailOptions {
   to: string;
@@ -14,7 +15,7 @@ export const sendVerificationEmail = async ({
 }: SendVerificationEmailOptions) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from:  `Age of Battles <${fromEmail}>`,
       to: [to],
       subject: "Verify your email",
       html: emailTemplate(verificationToken),
@@ -22,7 +23,7 @@ export const sendVerificationEmail = async ({
 
     if (error) {
       console.error("Error sending email:", error);
-      throw new Error("Failed to send email11");
+      throw new Error("Failed to send email");
     }
 
     console.log("Verification email sent:", data.id);

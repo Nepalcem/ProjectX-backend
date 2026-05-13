@@ -28,9 +28,13 @@ const verifyEmail = async (req: Request, res: Response) => {
   }
 
   //   Usually for email verification you redirect to a frontend route like:
-  // FRONTEND_URL=https://ageofbattles.online/login
+  // FRONTEND_URL=https://ageofbattles.online
+  // if (FRONTEND_URL) {
+  //   return res.redirect(301, `${FRONTEND_URL}/?emailVerified=1`);
+  // }
+
   if (FRONTEND_URL) {
-    return res.redirect(301, FRONTEND_URL);
+    return res.redirect(301, `${FRONTEND_URL}/?emailVerified=1`);
   }
 
   return res.json({ message: "Email verified successfully" });

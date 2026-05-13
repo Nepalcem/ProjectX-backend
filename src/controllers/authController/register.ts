@@ -39,7 +39,7 @@ const register = async (req: Request, res: Response) => {
   });
 
   res.status(201).json({
-    message: "Please verify your email",
+    message: "Registered! Please verify your email",
   });
 };
 

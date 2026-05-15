@@ -3,6 +3,7 @@ import authControllers from "@/controllers/authController/index.js";
 import validateBody from "@/middlewares/validateBody.js";
 import zodSchemas from "@/zodSchemas/index.js";
 import requestLimiters from "@/helpers/limiters/index.js";
+import authenticate from "@/middlewares/authenticate.js";
 
 
 const router = express.Router();
@@ -32,5 +33,8 @@ router.post(
   authControllers.resetPassword,
 );
 router.get("/verify/:verificationToken", authControllers.verifyEmail);
+
+router.post("/login", requestLimiters.login, validateBody(zodSchemas.login), authControllers.login);
+router.post("/logout", authenticate, authControllers.logout);
 
 export default router;

@@ -15,8 +15,9 @@ const register = async (req: Request, res: Response) => {
   }
 
   const { email, password } = req.body;
+  const normalizedEmail = email.toLowerCase().trim();
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ email: normalizedEmail });
 
   if (existingUser) {
     throw new HttpError(409, "Email already in use");
@@ -27,14 +28,14 @@ const register = async (req: Request, res: Response) => {
   const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
   await User.create({
-    email,
+    email: normalizedEmail,
     password: hashedPassword,
     verificationToken,
     verificationTokenExpires,
   });
 
   await sendVerificationEmail({
-    to: email,
+    to: normalizedEmail,
     verificationToken,
   });
 

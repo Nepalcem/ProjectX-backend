@@ -10,7 +10,8 @@ const register = async (req, res) => {
         throw new HttpError(400, "Invalid input");
     }
     const { email, password } = req.body;
-    const existingUser = await User.findOne({ email });
+    const normalizedEmail = email.toLowerCase().trim();
+    const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
         throw new HttpError(409, "Email already in use");
     }
@@ -18,17 +19,17 @@ const register = async (req, res) => {
     const verificationToken = nanoid();
     const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
     await User.create({
-        email,
+        email: normalizedEmail,
         password: hashedPassword,
         verificationToken,
         verificationTokenExpires,
     });
     await sendVerificationEmail({
-        to: email,
+        to: normalizedEmail,
         verificationToken,
     });
     res.status(201).json({
-        message: "Please verify your email",
+        message: "Registered! Please verify your email",
     });
 };
 export default register;

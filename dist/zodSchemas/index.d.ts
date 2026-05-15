@@ -12,6 +12,10 @@ declare const zodSchemas: {
         resetToken: import("zod").ZodString;
         newPassword: import("zod").ZodString;
     }, import("zod/v4/core").$strip>;
+    login: import("zod").ZodObject<{
+        email: import("zod").ZodString;
+        password: import("zod").ZodString;
+    }, import("zod/v4/core").$strip>;
 };
 export default zodSchemas;
 //# sourceMappingURL=index.d.ts.map

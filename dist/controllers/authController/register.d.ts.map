@@ -1,1 +1,1 @@
-{"version":3,"file":"register.d.ts","sourceRoot":"","sources":["../../../src/controllers/authController/register.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAQjD,QAAA,MAAM,QAAQ,GAAU,KAAK,OAAO,EAAE,KAAK,QAAQ,kBAiClD,CAAC;AAEF,eAAe,QAAQ,CAAC"}
+{"version":3,"file":"register.d.ts","sourceRoot":"","sources":["../../../src/controllers/authController/register.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAQjD,QAAA,MAAM,QAAQ,GAAU,KAAK,OAAO,EAAE,KAAK,QAAQ,kBAkClD,CAAC;AAEF,eAAe,QAAQ,CAAC"}

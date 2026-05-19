@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import type { Request, Response } from "express";
 import User from "@/models/user/user.js";
+import Character from "@/models/user/character.js";
 import HttpError from "@/helpers/httpError.js";
 import createToken from "@/helpers/createToken.js";
 
@@ -25,12 +26,15 @@ const login = async (req: Request, res: Response) => {
   const token = createToken(user._id.toString());
 
   await User.findByIdAndUpdate(user._id, { token });
-  
+
+  const character = await Character.findOne({ owner: user._id });
+
   res.status(200).json({
     user: {
       email: user.email,
       id: user._id.toString(),
     },
+    character,
     message: "Login successful",
     token,
   });

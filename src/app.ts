@@ -5,6 +5,7 @@ import type { Express, NextFunction, Request, Response } from "express";
 import AppError from "./errorHandler/errorHandler.js";
 
 const authRouter = await import("./routes-Api/authRouter.js");
+const characterRouter = await import("./routes-Api/characterRouter.js");
 
 export const app: Express = express();
 
@@ -21,6 +22,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/auth", authRouter.default);
+app.use("/characters", characterRouter.default);
 app.use((err: AppError, _req: Request, res: Response, _next: NextFunction) => {
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });

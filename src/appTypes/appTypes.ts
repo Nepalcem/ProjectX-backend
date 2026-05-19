@@ -1,4 +1,5 @@
 import type { Types, Document } from "mongoose";
+import type { IEquipSlot } from "@/constants/inventoryItemTypes.js";
 
 export interface IUser extends Document {
   email: string;
@@ -20,6 +21,7 @@ export interface ICharacter {
   createdAt: Date;
   money: number;
   stats: ICharacterStats;
+  equipped: IEquippedItems;
 }
 
 export interface ICharacterStats {
@@ -28,11 +30,14 @@ export interface ICharacterStats {
   luck: number;
   vitality: number;
   health: number;
-  healthRecovery: number;
+  healthRecoveryRate: number;
   experience: number;
   fatigue: number;
-  fatigueRecovery: number;
+  fatigueRecoveryRate: number;
   statPoints: number;
 }
 
 export type IRace = "human" | "elf" | "dwarf" | "orc";
+
+/** Equipped inventory item ids per body slot. */
+export type IEquippedItems = Record<IEquipSlot, Types.ObjectId | null>;

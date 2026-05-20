@@ -11,7 +11,6 @@ export interface IUser extends Document {
     resetTokenExpires: Date | null;
 }
 export interface ICharacter {
-    id: string;
     nickname: string;
     race: IRace;
     level: number;

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import Character from "../../models/user/character.js";
 import HttpError from "../../helpers/httpError.js";
 import { buildInitialStats } from "../../helpers/gameFunctions/buildInitialStats.js";
@@ -14,7 +13,6 @@ const createCharacter = async (req, res) => {
         throw new HttpError(409, "Nickname already taken");
     }
     const character = await Character.create({
-        id: nanoid(),
         nickname,
         race,
         owner: ownerId,

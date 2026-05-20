@@ -19,11 +19,6 @@ const statsSchema = new Schema({
     statPoints: { type: Number, required: true },
 }, { _id: false });
 const characterSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     nickname: {
         type: String,
         required: true,

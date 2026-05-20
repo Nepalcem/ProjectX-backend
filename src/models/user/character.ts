@@ -38,11 +38,6 @@ const statsSchema: Schema<ICharacterStats> = new Schema(
 
 const characterSchema: Schema<ICharacter> = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     nickname: {
       type: String,
       required: true,

@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import type { Response } from "express";
 import Character from "@/models/user/character.js";
 import HttpError from "@/helpers/httpError.js";
@@ -21,7 +20,6 @@ const createCharacter = async (req: AuthRequest, res: Response) => {
   }
 
   const character = await Character.create({
-    id: nanoid(),
     nickname,
     race,
     owner: ownerId,

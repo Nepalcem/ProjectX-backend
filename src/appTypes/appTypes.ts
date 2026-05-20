@@ -13,7 +13,6 @@ export interface IUser extends Document {
 }
 
 export interface ICharacter {
-  id: string;
   nickname: string;
   race: IRace;
   level: number;

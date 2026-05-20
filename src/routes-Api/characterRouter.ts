@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/me", authenticate, characterControllers.getUserCharacter);
 
 router.post(
-  "/",
+  "/create",
   authenticate,
   validateBody(zodSchemas.createCharacter),
   characterControllers.createCharacter,

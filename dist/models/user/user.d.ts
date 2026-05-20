@@ -1,6 +1,7 @@
+import { Types } from "mongoose";
 import type { IUser } from "../../appTypes/appTypes.js";
 declare const _default: import("mongoose").Model<IUser, {}, {}, {}, import("mongoose").Document<unknown, {}, IUser, {}, import("mongoose").DefaultSchemaOptions> & IUser & Required<{
-    _id: import("mongoose").Types.ObjectId;
+    _id: Types.ObjectId;
 }> & {
     __v: number;
 }, any, IUser>;

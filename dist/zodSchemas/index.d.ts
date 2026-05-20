@@ -16,6 +16,15 @@ declare const zodSchemas: {
         email: import("zod").ZodString;
         password: import("zod").ZodString;
     }, import("zod/v4/core").$strip>;
+    createCharacter: import("zod").ZodObject<{
+        nickname: import("zod").ZodString;
+        race: import("zod").ZodEnum<{
+            human: "human";
+            elf: "elf";
+            dwarf: "dwarf";
+            orc: "orc";
+        }>;
+    }, import("zod/v4/core").$strip>;
 };
 export default zodSchemas;
 //# sourceMappingURL=index.d.ts.map

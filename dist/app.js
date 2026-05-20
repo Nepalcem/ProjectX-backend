@@ -3,6 +3,7 @@ import logger from "morgan";
 import cors from "cors";
 import AppError from "./errorHandler/errorHandler.js";
 const authRouter = await import("./routes-Api/authRouter.js");
+const characterRouter = await import("./routes-Api/characterRouter.js");
 export const app = express();
 app.set("trust proxy", 1);
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -13,6 +14,7 @@ app.get("/", (_req, res) => {
     res.send(console.log("Its alive!1"));
 });
 app.use("/auth", authRouter.default);
+app.use("/characters", characterRouter.default);
 app.use((err, _req, res, _next) => {
     const { status = 500, message = "Server error" } = err;
     res.status(status).json({ message });

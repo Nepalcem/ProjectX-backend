@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import { emailRegExp, passwordRegExp } from "../../constants/regularExpressions.js";
 import handleMongooseError from "../../helpers/handleMongooseError.js";
 const userSchema = new Schema({

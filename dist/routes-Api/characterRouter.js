@@ -6,5 +6,6 @@ import characterControllers from "../controllers/characterController/index.js";
 const router = express.Router();
 router.get("/me", authenticate, characterControllers.getUserCharacter);
 router.post("/create", authenticate, validateBody(zodSchemas.createCharacter), characterControllers.createCharacter);
+router.delete("/me", authenticate, characterControllers.deleteCharacter);
 export default router;
 //# sourceMappingURL=characterRouter.js.map

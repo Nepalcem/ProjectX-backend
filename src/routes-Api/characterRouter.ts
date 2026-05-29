@@ -15,4 +15,6 @@ router.post(
   characterControllers.createCharacter,
 );
 
+router.delete("/me", authenticate, characterControllers.deleteCharacter);
+
 export default router;

@@ -1,0 +1,12 @@
+import Character from "../../models/user/character.js";
+import HttpError from "../../helpers/httpError.js";
+const deleteCharacter = async (req, res) => {
+    const character = await Character.findOne({ owner: req.user._id });
+    if (!character) {
+        throw new HttpError(404, "Character not found");
+    }
+    await Character.deleteOne({ _id: character._id });
+    res.status(200).json({ message: "Character deleted successfully" });
+};
+export default deleteCharacter;
+//# sourceMappingURL=deleteCharacter.js.map

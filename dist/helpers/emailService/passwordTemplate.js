@@ -1,5 +1,5 @@
 const { FRONTEND_URL } = process.env;
-const passwordResetURL = (resetToken, email) => `${FRONTEND_URL}/auth/reset-password/?email=${email}&resetToken=${resetToken}`;
+const passwordResetURL = (resetToken, email) => `${FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&resetToken=${encodeURIComponent(resetToken)}`;
 const passwordResetTemplate = (resetToken, email) => `<!doctype html>
       <html lang="en">
         <head>
